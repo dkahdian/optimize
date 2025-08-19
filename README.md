@@ -2,9 +2,11 @@
 
 This project implements a dynamic portfolio allocation strategy using forward-looking economic indicators to predict optimal asset allocations based on professional forecasts. The model uses historical data to train a regression model that maps expected GDP growth, inflation, interest rates, and equity risk premiums to optimal asset allocations based on risk-adjusted returns (e.g., Sharpe ratio).
 
+The project provides a clear way for investors to pick their bond/stock allocation as a function of market outlook. Investors can adjust the cash weight based on their risk tolerance.
+
 ## Data Sources & Forward-Looking Indicators
 
-Our model uses four key forward-looking economic indicators from professional, institutional-grade data sources:
+The model uses four key forward-looking economic indicators from professional, institutional-grade data sources:
 
 ### 1. Expected GDP Growth
 - **Source**: Philadelphia Federal Reserve Survey of Professional Forecasters (SPF)
@@ -36,11 +38,9 @@ Our model uses four key forward-looking economic indicators from professional, i
 
 ## Model Implementation
 
-The approach is divided into five key steps:
+### Data Collection & Feature Engineering
 
-### Step 1: Data Collection & Feature Engineering ✅
-
-All forward-looking indicators are now implemented using professional forecaster data:
+All forward-looking indicators are implemented using professional forecaster data:
 
 ```python
 # Example usage for Q4 2023 predictions:
@@ -50,7 +50,7 @@ interest_rate = get_expected_interest_rate(datetime.datetime(2023, 12, 31)) # 5.
 risk_premium = get_risk_premium(datetime.datetime(2023, 12, 31))           # 4.60%
 ```
 
-### Step 2: Prepare the Training Data
+### Prepare the Training Data
 
 #### Features (X)
 - Expected GDP growth rate (from SPF DRGDP3)
@@ -73,19 +73,19 @@ Look at the next 3 months of realized returns to create training dataset:
 | 1.49%   | 3.05%    | 1.08%    | 5.94%     | TBD          | TBD         |
 | 1.94%   | 2.19%    | 5.23%    | 4.33%     | TBD          | TBD         |
 
-### Step 3: Train a Regression Model
+### Train a Regression Model
 
 - **Model Choice**: Start with linear regression, consider Random Forest/XGBoost
 - **Input**: `[GDP_exp, Infl_exp, Rate_exp, Risk_Prem]`
 - **Output**: `[expected_stock_return, expected_bond_return]`
 
-### Step 4: Portfolio Optimization using Modern Portfolio Theory
+### Portfolio Optimization using Modern Portfolio Theory
 
 - Use model predictions for expected returns
 - Apply MPT to compute optimal tangency portfolio
 - Consider transaction costs and constraints
 
-### Step 5: Predict Portfolio Weights (Live Use)
+### Predict Portfolio Weights (Live Use)
 
 #### Example Workflow:
 1. Collect current forward-looking indicators (today's expectations)
@@ -106,11 +106,3 @@ Look at the next 3 months of realized returns to create training dataset:
 - Asset variances and covariances are estimated from historical data
 - Professional forecasters provide unbiased expectations
 - Market efficiency allows for translation of economic indicators to asset returns
-
-## Next Steps
-
-1. **Historical Return Data Collection**: Gather corresponding stock and bond return data for training periods
-2. **Model Training**: Implement and train regression models using the forward-looking indicators
-3. **Backtesting Framework**: Develop systematic backtesting of the strategy
-4. **Risk Management**: Implement position sizing and risk controls
-5. **Live Deployment**: Create automated system for live portfolio recommendations
