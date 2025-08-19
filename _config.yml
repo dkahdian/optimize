@@ -1,0 +1,56 @@
+# Book settings
+title: Portfolio Optimization with Forward-Looking Indicators
+author: dkahdian
+logo: ""
+copyright: "2025"
+
+# Force re-execution of notebooks on each build
+execute:
+  execute_notebooks: "off"
+  cache: ""
+
+# Define the name of the latex output file for PDF builds
+latex:
+  latex_documents:
+    targetname: portfolio_optimization.tex
+
+# Add a Binder button to launch the interactive notebook
+launch_buttons:
+  notebook_interface: "jupyterlab"
+  binderhub_url: "https://mybinder.org"
+
+# Information about where the book exists on the web
+repository:
+  url: https://github.com/dkahdian/optimize  # Online location of your book
+  path_to_book: docs  # Optional path to your book, relative to the repository root
+  branch: main  # Which branch of the repository should be used when creating links (optional)
+
+# Add GitHub issues and edit suggestions
+html:
+  use_issues_button: true
+  use_repository_button: true
+  use_edit_page_button: true
+  edit_page_text: "Edit this page"
+  use_multitoc_numbering: true
+  comments:
+    hypothesis: false
+    utterances:
+      repo: "dkahdian/optimize"
+
+# Advanced configurations
+parse:
+  myst_enable_extensions:
+    - amsmath
+    - colon_fence
+    - deflist
+    - dollarmath
+    - html_admonition
+    - html_image
+    - linkify
+    - replacements
+    - smartquotes
+    - substitution
+
+sphinx:
+  config:
+    bibtex_reference_style: author_year
