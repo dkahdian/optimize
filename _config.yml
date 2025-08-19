@@ -22,7 +22,7 @@ launch_buttons:
 # Information about where the book exists on the web
 repository:
   url: https://github.com/dkahdian/optimize  # Online location of your book
-  path_to_book: docs  # Optional path to your book, relative to the repository root
+  path_to_book: ""  # Book is in repository root
   branch: main  # Which branch of the repository should be used when creating links (optional)
 
 # Add GitHub issues and edit suggestions
